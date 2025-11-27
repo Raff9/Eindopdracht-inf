@@ -38,3 +38,8 @@ player_y = 150
 player_x_direction = 0
 player_y_direction = 0
 player_speed = 5
+
+# Draw player
+pygame.draw.rect(screen, (255, 255, 0), (player_x, player_y, player_width, player_height))
+
+pygame.display.update()
