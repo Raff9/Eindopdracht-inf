@@ -29,3 +29,11 @@ while running:
 
 width, height = 800, 200
 color = (97, 215, 110)
+
+# Player properties
+player_width = 50
+player_height = 50
+player_x = 150
+player_y = 150
+player_x_direction = 0
+player_y_direction = 0
