@@ -32,3 +32,4 @@ player_x = 150
 player_y = 150
 player_x_direction = 0
 player_y_direction = 0
+player_speed = 5
