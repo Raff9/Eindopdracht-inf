@@ -4,8 +4,8 @@ pygame.init()
 color = (97, 215, 110)
 
 # Player properties
-player_width = 60
-player_height = 50
+player_width = 120
+player_height = 100
 player_x = 150
 player_y = 150
 player_x_direction = 0
@@ -25,7 +25,7 @@ if keys[pygame.K_s]:
     player_y += player_speed
 
 # Set up display
-width, height = 1000, 500
+width, height = 900, 500
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Simple Pygame Window")
 clock = pygame.time.Clock()
