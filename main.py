@@ -47,13 +47,15 @@ while running:
 
     screen.blit(achtergrond, (0, 0))
     screen.blit(player, (player_x, player_y))
-
     screen.blit(text, text_rect)
+    #pygame.draw.rect(screen, (255, 255, 255), (player_x, player_y,))
+    pygame.display.flip()
+
 
 # Toetsen die ingedrukt worden
 keys = pygame.key.get_pressed()
 
-pygame.display.flip()
+
 clock.tick(60)
 
 # Draw player
