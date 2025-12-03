@@ -12,7 +12,7 @@ player_x_direction = 0
 player_y_direction = 0
 player_speed = 5
 
-# Toetsen die ingedrukt worden
+# player properties
 keys = pygame.key.get_pressed()
 
 if keys[pygame.K_a]:
@@ -46,18 +46,15 @@ while running:
             running = False
 
     screen.blit(achtergrond, (0, 0))
-    pygame.draw.rect(screen,(100, 100, 100),(player_x, player_y, player_width, player_height))
     screen.blit(player, (player_x, player_y))
 
     screen.blit(text, text_rect)
 
+# Toetsen die ingedrukt worden
+keys = pygame.key.get_pressed()
 
-    pygame.display.flip()
-    clock.tick(60)
-
-
+pygame.display.flip()
+clock.tick(60)
 
 # Draw player
-
-
 pygame.display.update()
