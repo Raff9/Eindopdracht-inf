@@ -4,8 +4,8 @@ pygame.init()
 color = (97, 215, 110)
 
 # Player properties
-player_width = 60
-player_height = 50
+player_width = 120
+player_height = 100
 player_x = 150
 player_y = 150
 player_x_direction = 0
@@ -46,7 +46,6 @@ while running:
             running = False
 
     screen.blit(achtergrond, (0, 0))
-    pygame.draw.rect(screen,(100, 100, 100),(player_x, player_y, player_width, player_height))
     screen.blit(player, (player_x, player_y))
 
     screen.blit(text, text_rect)
