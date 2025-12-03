@@ -3,7 +3,7 @@ import pygame
 pygame.init()
 
 # Set up display
-width, height = 1000, 500
+width, height = 900, 500
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Simple Pygame Window")
 clock = pygame.time.Clock()
