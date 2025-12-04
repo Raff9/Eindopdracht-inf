@@ -12,7 +12,6 @@ player_x_direction = 0
 player_y_direction = 0
 player_speed = 0.7
 
-
 # Set up display
 width, height = 900, 500
 screen = pygame.display.set_mode((width, height))
@@ -46,19 +45,17 @@ while running:
     if keys[pygame.K_s]:
         player_y += player_speed
 
+    if player_x > width:
+        player_x = -player_width
+
     screen.blit(achtergrond, (0, 0))
     screen.blit(player, (player_x, player_y))
     screen.blit(text, text_rect)
     #pygame.draw.rect(screen, (255, 255, 255), (player_x, player_y,))
     pygame.display.flip()
 
-    # player properties
-
-
-
 # Toetsen die ingedrukt worden
 keys = pygame.key.get_pressed()
-
 
 clock.tick(60)
 
