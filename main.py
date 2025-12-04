@@ -38,6 +38,7 @@ player = pygame.image.load('Kip.png')
 player = pygame.transform.scale(player, (player_width, player_height))
 playerHitbox = player.get_rect()
 playerHitbox.topleft = (player_x, player_y)
+
 text = font.render('Chicken world', True, (83, 64, 175))
 text_rect = text.get_rect(center=(width // 2, height // 2))
 while running:
