@@ -8,10 +8,12 @@ player_width = 120
 player_height = 100
 player_x = 150
 player_y = 350
-player_x_direction = 0
-player_y_direction = 0
-player_speed = 0.7
+player_speed = 3
+
+# zwaartekracht en springen
 gravity = 0.5
+vertical_velocity = 0
+jump_strength = -12
 
 # Set up display
 width, height = 900, 500
@@ -33,50 +35,51 @@ playerHitbox = player.get_rect()
 playerHitbox.width = 80
 playerHitbox.height = 80
 
+# Vloer
+ground = pygame.Rect(0, 450, 1000, 50)
+
+# Game loop
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    
-    old_x = player_x
-    old_y = player_y
-    playerHitbox.center = (player_x + player_width // 2, player_y + player_height // 2)
-
-    ground = pygame.Rect(0, 450, 1000, 50)
-
-    if playerHitbox.colliderect(ground):
-        player_speed = 0.1
-
-    else:
-        player_speed = 0.7
 
     keys = pygame.key.get_pressed()
 
+    # BEWEGEN LINKS/RECHTS
     if keys[pygame.K_a]:
         player_x -= player_speed
     if keys[pygame.K_d]:
         player_x += player_speed
-    if keys[pygame.K_w]:
-        player_y -= player_speed
-    if keys[pygame.K_s] and not playerHitbox.colliderect(ground):
-        player_y += player_speed
 
+    # SPRINGEN
+    if keys[pygame.K_SPACE]:
+        if playerHitbox.bottom >= ground.top:
+            vertical_velocity = jump_strength
+
+    # ZWAARTEKRACHT
+    vertical_velocity += gravity
+    player_y += vertical_velocity
+
+    # HITBOX UPDATEN
+    playerHitbox.center = (
+        player_x + player_width // 2,
+        player_y + player_height // 2,
+    )
+
+    # COLLISION MET DE GROND
+    if playerHitbox.bottom >= ground.top:
+        playerHitbox.bottom = ground.top
+        # speler moet op de grond staan
+        player_y = playerHitbox.top - (player_height - playerHitbox.height) / 2
+        vertical_velocity = 0  # stoppen met vallen
+
+    # TEKENEN
     screen.blit(achtergrond, (0, 0))
     screen.blit(player, (player_x, player_y))
-    screen.blit(text, text_rect)
     pygame.draw.rect(screen, (139, 69, 19), ground)
     pygame.draw.rect(screen, (255, 0, 0), playerHitbox, 2)
+    screen.blit(text, text_rect)
+
     pygame.display.flip()
-
-    
-    # player properties
-
-
-
-# Toetsen die ingedrukt worden
-keys = pygame.key.get_pressed()
-
-clock.tick(60)
-
-# Draw player
-pygame.display.update()
+    clock.tick(60)
