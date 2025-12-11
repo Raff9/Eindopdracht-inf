@@ -37,7 +37,8 @@ playerHitbox.height = 80
 
 # Blokken
 ground = pygame.Rect(0, 450, 300, 50)
-wall = pygame.Rect(400, 350, 50, 100)
+wall = pygame.Rect(400, 350, 50, 400)
+opGrond = False
 
 # Game loop
 while running:
@@ -61,9 +62,11 @@ while running:
         if playerHitbox.bottom >= ground.top:
             vertical_velocity = jump_strength
 
+    
     # ZWAARTEKRACHT
-    vertical_velocity += gravity
-    player_y += vertical_velocity
+    if not opGrond:
+        vertical_velocity += gravity
+        player_y += vertical_velocity
 
     # HITBOX UPDATEN
     playerHitbox.center = (
@@ -72,10 +75,17 @@ while running:
     )
 
     # COLLISION MET DE GROND
-    if playerHitbox.bottom >= ground.top:
-        playerHitbox.bottom = ground.top
-        player_y = playerHitbox.top - (player_height - playerHitbox.height) / 2
-        vertical_velocity = 0
+    if playerHitbox.colliderect(ground):
+        opGrond = True
+        if vertical_velocity > 0:   # valt omlaag
+            playerHitbox.bottom = ground.top
+            vertical_velocity = 0
+        elif vertical_velocity < 0:  # springt omhoog
+            opGrond = False
+            playerHitbox.top = ground.bottom
+            vertical_velocity = 0
+    else:
+        opGrond = False
 
     # COLLISION MET DE MUUR
     if playerHitbox.colliderect(wall):
