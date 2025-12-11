@@ -13,7 +13,7 @@ player_speed = 3
 # zwaartekracht en springen
 gravity = 0.5
 vertical_velocity = 0
-jump_strength = -12
+jump_strength = -14
 
 # Set up display
 width, height = 900, 500
@@ -35,8 +35,9 @@ playerHitbox = player.get_rect()
 playerHitbox.width = 80
 playerHitbox.height = 80
 
-# Vloer
-ground = pygame.Rect(0, 450, 1000, 50)
+# Blokken
+ground = pygame.Rect(0, 450, 300, 50)
+wall = pygame.Rect(400, 350, 50, 100)
 
 # Game loop
 while running:
@@ -49,9 +50,12 @@ while running:
     # BEWEGEN LINKS/RECHTS
     if keys[pygame.K_a]:
         player_x -= player_speed
+        if keys[pygame.K_LSHIFT]:
+            player_x -= player_speed
     if keys[pygame.K_d]:
         player_x += player_speed
-
+        if keys[pygame.K_LSHIFT]:
+            player_x += player_speed
     # SPRINGEN
     if keys[pygame.K_SPACE]:
         if playerHitbox.bottom >= ground.top:
@@ -70,14 +74,23 @@ while running:
     # COLLISION MET DE GROND
     if playerHitbox.bottom >= ground.top:
         playerHitbox.bottom = ground.top
-        # speler moet op de grond staan
         player_y = playerHitbox.top - (player_height - playerHitbox.height) / 2
-        vertical_velocity = 0  # stoppen met vallen
+        vertical_velocity = 0
+
+    # COLLISION MET DE MUUR
+    if playerHitbox.colliderect(wall):
+        if playerHitbox.right > wall.left and playerHitbox.left < wall.left:
+            playerHitbox.right = wall.left
+            player_x = playerHitbox.left - (player_width - playerHitbox.width) / 2
+        elif playerHitbox.left < wall.right and playerHitbox.right > wall.right:
+            playerHitbox.left = wall.right
+            player_x = playerHitbox.left - (player_width - playerHitbox.width) / 2
 
     # TEKENEN
     screen.blit(achtergrond, (0, 0))
     screen.blit(player, (player_x, player_y))
     pygame.draw.rect(screen, (139, 69, 19), ground)
+    pygame.draw.rect(screen, (139, 69, 19), wall)
     pygame.draw.rect(screen, (255, 0, 0), playerHitbox, 2)
     screen.blit(text, text_rect)
 
