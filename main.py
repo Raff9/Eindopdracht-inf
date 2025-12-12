@@ -48,7 +48,7 @@ while running:
 
     keys = pygame.key.get_pressed()
 
-    # BEWEGEN LINKS/RECHTS
+    # BEWEGEN- LINKS/RECHTS
     if keys[pygame.K_a]:
         player_x -= player_speed
         if keys[pygame.K_LSHIFT]:
