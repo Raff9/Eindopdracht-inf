@@ -29,7 +29,7 @@ vijand = pygame.transform.scale(vijand, (vijand_width, vijand_height))
 # zwaartekracht en springen
 gravity = 0.5
 vertical_velocity = 0
-jump_strength = -12
+jump_strength = -14
 
 # Set up display
 width, height = 900, 500
@@ -51,8 +51,10 @@ playerHitbox = player.get_rect()
 playerHitbox.width = 80
 playerHitbox.height = 80
 
-# Vloer
-ground = pygame.Rect(0, 450, 1000, 50)
+# Blokken
+ground = pygame.Rect(0, 450, 300, 50)
+wall = pygame.Rect(400, 350, 50, 400)
+opGrond = False
 
 # Game loop
 while running:
@@ -65,17 +67,22 @@ while running:
     # BEWEGEN LINKS/RECHTS
     if keys[pygame.K_a]:
         player_x -= player_speed
+        if keys[pygame.K_LSHIFT]:
+            player_x -= player_speed
     if keys[pygame.K_d]:
         player_x += player_speed
-
+        if keys[pygame.K_LSHIFT]:
+            player_x += player_speed
     # SPRINGEN
     if keys[pygame.K_SPACE]:
         if playerHitbox.bottom >= ground.top:
             vertical_velocity = jump_strength
 
+    
     # ZWAARTEKRACHT
-    vertical_velocity += gravity
-    player_y += vertical_velocity
+    if not opGrond:
+        vertical_velocity += gravity
+        player_y += vertical_velocity
 
     # HITBOX UPDATEN
     playerHitbox.center = (
@@ -84,17 +91,33 @@ while running:
     )
 
     # COLLISION MET DE GROND
-    if playerHitbox.bottom >= ground.top:
-        playerHitbox.bottom = ground.top
-        # speler moet op de grond staan
-        player_y = playerHitbox.top - (player_height - playerHitbox.height) / 2
-        vertical_velocity = 0  # stoppen met vallen
+    if playerHitbox.colliderect(ground):
+        opGrond = True
+        if vertical_velocity > 0:   # valt omlaag
+            playerHitbox.bottom = ground.top
+            vertical_velocity = 0
+        elif vertical_velocity < 0:  # springt omhoog
+            opGrond = False
+            playerHitbox.top = ground.bottom
+            vertical_velocity = 0
+    else:
+        opGrond = False
+
+    # COLLISION MET DE MUUR
+    if playerHitbox.colliderect(wall):
+        if playerHitbox.right > wall.left and playerHitbox.left < wall.left:
+            playerHitbox.right = wall.left
+            player_x = playerHitbox.left - (player_width - playerHitbox.width) / 2
+        elif playerHitbox.left < wall.right and playerHitbox.right > wall.right:
+            playerHitbox.left = wall.right
+            player_x = playerHitbox.left - (player_width - playerHitbox.width) / 2
 
     # TEKENEN
     screen.blit(achtergrond, (0, 0))
     screen.blit(player, (player_x, player_y))
     screen.blit(vijand, (vijand_x, vijand_y))
     pygame.draw.rect(screen, (139, 69, 19), ground)
+    pygame.draw.rect(screen, (139, 69, 19), wall)
     pygame.draw.rect(screen, (255, 0, 0), playerHitbox, 2)
     screen.blit(text, text_rect)
 
