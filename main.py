@@ -10,6 +10,22 @@ player_x = 150
 player_y = 350
 player_speed = 3
 
+# vijand 
+vijand = pygame.image.load('Mayonnaise_Machine.png')
+
+vijand_width = 60
+vijand_height = 90
+vijand_speed = 3
+
+vijandHitbox = vijand.get_rect()
+vijandHitbox.width = 80
+vijandHitbox.height = 80
+
+vijand_x = 500
+vijand_y = 370
+
+vijand = pygame.transform.scale(vijand, (vijand_width, vijand_height))
+
 # zwaartekracht en springen
 gravity = 0.5
 vertical_velocity = 0
@@ -77,9 +93,11 @@ while running:
     # TEKENEN
     screen.blit(achtergrond, (0, 0))
     screen.blit(player, (player_x, player_y))
+    screen.blit(vijand, (vijand_x, vijand_y))
     pygame.draw.rect(screen, (139, 69, 19), ground)
     pygame.draw.rect(screen, (255, 0, 0), playerHitbox, 2)
     screen.blit(text, text_rect)
+
 
     pygame.display.flip()
     clock.tick(60)
