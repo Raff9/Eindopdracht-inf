@@ -3,6 +3,10 @@ import pygame
 pygame.init()
 color = (97, 215, 110)
 
+# Death
+DANGER_ZONE = pygame.Rect(0, 480, 500000, 200)
+alive = True
+
 # Player properties
 player_width = 120
 player_height = 100
@@ -10,7 +14,7 @@ player_x = 150
 player_y = 350
 player_speed = 3
 
-# vijand 
+# Enemy 
 vijand = pygame.image.load('Mayonnaise_Machine.png')
 
 vijand_width = 60
@@ -62,6 +66,8 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+
+
     keys = pygame.key.get_pressed()
 
     # BEWEGEN LINKS/RECHTS
@@ -112,6 +118,9 @@ while running:
             playerHitbox.left = wall.right
             player_x = playerHitbox.left - (player_width - playerHitbox.width) / 2
 
+    
+    
+
     # TEKENEN
     screen.blit(achtergrond, (0, 0))
     screen.blit(player, (player_x, player_y))
@@ -119,6 +128,7 @@ while running:
     pygame.draw.rect(screen, (139, 69, 19), ground)
     pygame.draw.rect(screen, (139, 69, 19), wall)
     pygame.draw.rect(screen, (255, 0, 0), playerHitbox, 2)
+    pygame.draw.rect(screen, (255, 51, 51), DANGER_ZONE)
     screen.blit(text, text_rect)
 
 
