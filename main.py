@@ -3,12 +3,32 @@ import pygame
 pygame.init()
 color = (97, 215, 110)
 
+# Death
+DANGER_ZONE = pygame.Rect(0, 480, 500000, 200)
+alive = True
+
 # Player properties
 player_width = 120
 player_height = 100
 player_x = 150
 player_y = 350
 player_speed = 3
+
+# Enemy 
+vijand = pygame.image.load('Mayonnaise_Machine.png')
+
+vijand_width = 60
+vijand_height = 90
+vijand_speed = 3
+
+vijandHitbox = vijand.get_rect()
+vijandHitbox.width = 80
+vijandHitbox.height = 80
+
+vijand_x = 500
+vijand_y = 370
+
+vijand = pygame.transform.scale(vijand, (vijand_width, vijand_height))
 
 # zwaartekracht en springen
 gravity = 0.5
@@ -45,6 +65,8 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+
 
     keys = pygame.key.get_pressed()
 
@@ -96,13 +118,19 @@ while running:
             playerHitbox.left = wall.right
             player_x = playerHitbox.left - (player_width - playerHitbox.width) / 2
 
+    
+    
+
     # TEKENEN
     screen.blit(achtergrond, (0, 0))
     screen.blit(player, (player_x, player_y))
+    screen.blit(vijand, (vijand_x, vijand_y))
     pygame.draw.rect(screen, (139, 69, 19), ground)
     pygame.draw.rect(screen, (139, 69, 19), wall)
     pygame.draw.rect(screen, (255, 0, 0), playerHitbox, 2)
+    pygame.draw.rect(screen, (255, 51, 51), DANGER_ZONE)
     screen.blit(text, text_rect)
+
 
     pygame.display.flip()
     clock.tick(60)
