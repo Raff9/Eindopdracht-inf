@@ -38,7 +38,7 @@ bg_img = load_image('achtergrond 3.jpg', (WIDTH, HEIGHT))
 machine_img = load_image('Mayonnaise_Machine.png', (48, 48))
 # cache flipped machine image (vertical flip)
 if machine_img:
-    machine_img_up = pygame.transform.flip(machine_img, False, True)
+    machine_img_up = pygame.transform.flip(machine_img, True, False)
 else:
     machine_img_up = None
 
