@@ -563,7 +563,7 @@ while running:
             pygame.draw.rect(screen, (190, 190, 210), r)
             nozzle = (r.centerx + m.direction * 18, r.centery)
             pygame.draw.circle(screen, (160, 160, 180), nozzle, 6)
-        # projectiles
+    
         # projectiles
         for p in m.projectiles:
             pr = p.rect.copy()
