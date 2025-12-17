@@ -374,7 +374,7 @@ def advance_level():
     levels_dir = Path(__file__).parent / 'levels'
     total_levels = len([p for p in levels_dir.glob('level*.json') if p.is_file()])
     level += 1
-    # if JSON levels exist and we've finished them all, show Dutch victory
+    # if JSON levels exist and we've finished them all, show victory
     if total_levels > 0 and level > total_levels:
         win = True
         final_victory = True
