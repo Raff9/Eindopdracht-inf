@@ -190,7 +190,7 @@ class MayonnaiseMachine:
         # use the machine's configured projectile speed (pixels per frame)
         base = self.projectile_speed
         variance = 0.6
-        speed = (1.0 + random.random() * variance)
+        speed = (6.0 + random.random() * variance)
         # direction: 1 = down, -1 = up
         vy = base * speed * self.direction
         px = self.rect.centerx
