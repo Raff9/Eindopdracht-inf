@@ -12,7 +12,7 @@ FPS = 60
 PLAYER_SPEED = 5
 JUMP_POWER = 14
 GRAVITY = 0.8
-INVINCIBILITY_MS = 1500
+INVINCIBILITY_MS = 1000
 
 # --- INITIALIZATION ---
 pygame.init()
@@ -401,10 +401,13 @@ while running:
                 win = False
             if event.key == pygame.K_ESCAPE:
                 running = False
+    
 
     if not game_over and not win:
-        # save previous bottom to help with platform collision detection
+        # save previous bottom and sides to help with platform collision detection
         prev_bottom = player.rect.bottom
+        prev_left = player.rect.left
+        prev_right = player.rect.right
         player.update(dt)
         # compute whether player is currently centered over a hole (used to avoid snapping to ground)
         px = player.rect.centerx
@@ -413,7 +416,17 @@ while running:
             if h.left <= px <= h.right:
                 over_hole = h
                 break
-
+        # ---- X-axis collision (zijkanten) ----
+        for obj in (platforms + obstacles):
+            if player.rect.colliderect(obj):
+                # kwam van links
+                if prev_right <= obj.left:
+                    player.rect.right = obj.left
+                    player.vel_x = 0
+                # kwam van rechts
+                elif prev_left >= obj.right:
+                    player.rect.left = obj.right
+                    player.vel_x = 0
         # basic platform / ground collision handling
         landed = False
         # check platforms and obstacles first (use a tolerant foot check so landing is reliable)
