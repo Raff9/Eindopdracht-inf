@@ -5,6 +5,6 @@
   "holes": [[700, 450, 80, 50], [1250, 450, 100, 50], [1810, 450, 500, 50], [2500, 450, 250, 50]],
   "spikes": [[500, 417, 128, 32], [1500, 417, 64, 32]],
   "jump_pads": [[450, 334, 50, 10], [1000, 432, 50, 10], [2000, 400, 60, 10], [2600, 450, 50, 10]],
-  "machines": [{"x":350, "y":410, "direction":-1, "shoot_interval":1200}, {"x":890, "y":410, "direction":-1, "shoot_interval":1400}, {"x":1400, "y":410, "direction":-1, "shoot_interval":1500}, {"x":1700, "y":410, "direction":-1, "shoot_interval":1500}],
+  "machines": [{"x":350, "y":410, "direction":-1, "shoot_interval":1200}, {"x":890, "y":410, "direction":-1, "shoot_interval":1400}, {"x":1400, "y":410, "direction":-1, "shoot_interval":1500}, {"x":1700, "y":410, "direction":-1, "shoot_interval":1500}, {"x":2300, "y":310, "direction":-1, "shoot_interval":1300}],
   "finish_x": 2920
 }
