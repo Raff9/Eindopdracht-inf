@@ -221,7 +221,7 @@ class MayonnaiseMachine:
 ground_y = HEIGHT - 50
 
 # level variable
-level = 3
+level = 1
 
 # placeholder globals that will be built by build_level()
 WORLD_WIDTH = None
