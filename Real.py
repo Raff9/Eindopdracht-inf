@@ -405,7 +405,7 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_r and (game_over or win):
                 # restart from level 1 after finishing or game over
-                level = 1
+                level
                 final_victory = False
                 build_level(level)
                 player.reset()
