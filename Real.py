@@ -167,7 +167,7 @@ def spawn_egg_lost_effect(x, y, count=12):
             'vy': vy,
             'life': random.uniform(0.6, 1.2),
             'r': random.randint(2, 5),
-            'color': (255, 200, 60)
+            'color': (255, 0, 0)
         })
 
 def play_egg_sound():
