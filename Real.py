@@ -59,10 +59,24 @@ class Player:
             self.rect.x -= PLAYER_SPEED
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.rect.x += PLAYER_SPEED
-        if (keys[pygame.K_SPACE] or keys[pygame.K_UP] or keys[pygame.K_w]):
+        if keys[pygame.K_SPACE] or keys[pygame.K_UP] or keys[pygame.K_w]:
             if self.on_ground:
                 self.vel_y = -JUMP_POWER
                 self.on_ground = False
+                self.float_timer = 0
+                self.is_floating = False
+
+        # Zweven (alleen in de lucht)
+        self.max_float_time = 500
+        if not self.on_ground and (keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT]):
+            if self.float_timer < self.max_float_time:
+                self.vel_y = 0
+                self.is_floating = True
+                self.float_timer += clock.get_time()
+            else:
+                self.is_floating = False
+        else:
+            self.is_floating = False
 
     def apply_gravity(self):
         self.vel_y += GRAVITY
