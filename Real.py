@@ -221,7 +221,7 @@ class MayonnaiseMachine:
 ground_y = HEIGHT - 50
 
 # level variable
-level = 1
+level = 3
 
 # placeholder globals that will be built by build_level()
 WORLD_WIDTH = None
@@ -390,6 +390,7 @@ def advance_level():
     if total_levels > 0 and level > total_levels:
         win = True
         final_victory = True
+        level = 1
         return
     camera_x = 0
     build_level(level)
@@ -654,9 +655,9 @@ while running:
     score_text = font.render(f"Score: {player.score}", True, hud_col)
     level_text = font.render(f"Level: {level}", True, hud_col)
     controls_text = font.render("Arrow keys / A-D-Space = Move", True, hud_col)
-    controls2_text = font.render("Shift = Float", True, hud_col)
+    controls2_text = font.render("Shift in air = Float", True, hud_col)
     screen.blit(controls_text, (520, HEIGHT - 500))
-    screen.blit(controls2_text, (740, HEIGHT - 470))
+    screen.blit(controls2_text, (670, HEIGHT - 470))
     screen.blit(eggs_text, (16, 16))
     screen.blit(score_text, (16, 48))
     screen.blit(level_text, (16, 80))
