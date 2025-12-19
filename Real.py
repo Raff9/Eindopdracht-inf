@@ -180,8 +180,6 @@ class MayonnaiseMachine:
         self.rect = pygame.Rect(x, y, 48, 48)
         self.direction = direction  # 1 = down, -1 = up
         # if placed high on screen, flip to shoot upward automatically
-        if self.y < 150:
-            self.direction = -1
         self.shoot_interval = shoot_interval
         self.last_shot = pygame.time.get_ticks() - random.randint(0, shoot_interval)
         self.projectiles = []
