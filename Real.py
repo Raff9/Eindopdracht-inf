@@ -562,7 +562,7 @@ while running:
         r = jp.copy()
         r.x -= camera_x
         # darker blue so the pad stands out
-        pygame.draw.rect(screen, (10, 60, 160), r)
+        pygame.draw.rect(screen, (255, 255, 0), r)
 
     # draw machines
     for m in machines:
