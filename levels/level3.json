@@ -3,9 +3,9 @@
   "platforms": [[0, 450, 2200, 50], [690, 360, 180, 16], [980, 300, 200, 16], [1500, 380, 150, 16], [1700, 300, 180, 16]],
   "obstacles": [[1200, 500, 80, 16]],
   "holes": [[800, 450, 500, 50], [1480, 450, 800, 500]],
-  "spikes": [[1780, 280, 20, 25], [1900, 310, 130, 30], [2110, 300, 50, 20]],
+  "spikes": [[1780, 280, 20, 20], [1900, 310, 120, 25], [2110, 300, 50, 25]],
   "jump_pads": [[580, 410, 50, 10]],
-  "machines": [{"x": 520, "y": 190, "direction": 1, "shoot_interval": 400}, {"x": 820, "y": 100, "direction": 1, "shoot_interval": 500}, {"x": 1300, "y": 405, "direction": -1, "shoot_interval": 500}, {"x": 1500, "y": 130, "direction": 1, "shoot_interval": 400}],
+  "machines": [{"x": 520, "y": 190, "direction": 1, "shoot_interval": 400}, {"x": 820, "y": 200, "direction": 1, "shoot_interval": 500}, {"x": 1300, "y": 405, "direction": -1, "shoot_interval": 500}, {"x": 1500, "y": 130, "direction": 1, "shoot_interval": 400}],
   "checkpoints": [[520, 410, 24, 40]],
   "finish_x": 2100
 }
