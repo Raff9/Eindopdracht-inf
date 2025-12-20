@@ -17,7 +17,7 @@ INVINCIBILITY_MS = 1000
 # --- INITIALIZATION ---
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Chicken World")
+pygame.display.set_caption("Stardew run")
 clock = pygame.time.Clock()
 font = pygame.font.SysFont(None, 36)
 large_font = pygame.font.SysFont(None, 64)
